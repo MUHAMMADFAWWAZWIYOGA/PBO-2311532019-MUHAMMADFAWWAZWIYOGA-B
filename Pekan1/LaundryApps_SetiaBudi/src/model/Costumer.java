@@ -3,6 +3,8 @@ package model;
 public class Costumer {
 	
 	String atribute,nama,alamat;
+	int nomorHp;
+	
 	public String getAtribute() {
 		return atribute;
 	}
@@ -27,6 +29,6 @@ public class Costumer {
 	public void setNomorHp(int nomorHp) {
 		this.nomorHp = nomorHp;
 	}
-	int nomorHp;
+	
 
 }

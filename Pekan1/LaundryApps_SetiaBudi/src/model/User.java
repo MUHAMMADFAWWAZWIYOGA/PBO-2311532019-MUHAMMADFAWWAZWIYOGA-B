@@ -1,8 +1,8 @@
 package model;
 
-public class user {
+public class User {
 
-	String id,nama,username,password;
+	String id,nama,username, password;
 
 	public String getId() {
 		return id;
@@ -31,13 +31,13 @@ public class user {
 		return password;
 	}
 
-	public void setPassword(String pasword) {
-		this.password = pasword;
+	public void setPassword(String string) {
+		this.password = string;
 	}
 	
 	public static boolean login (String username, String password) {
 		boolean isLoggin = false ;
-		user user = new user ();
+		User user = new User ();
 		user.setId ("1");
 		user.setNama ("fulan");
 		user.setUsername(username);

@@ -3,7 +3,8 @@ package model;
 public class Order {
 
 		 String atribute_Id, id_Costumer, id_Services, id_user, 
-		total,tanggal, tanggal_selesai, status,status_Pembayaran;
+		tanggal, tanggal_selesai, status,status_Pembayaran;
+		 int total;
 
 		public String getAtribute_Id() {
 			return atribute_Id;
@@ -37,11 +38,11 @@ public class Order {
 			this.id_user = id_user;
 		}
 
-		public String getTotal() {
+		public int getTotal() {
 			return total;
 		}
 
-		public void setTotal(String total) {
+		public void setTotal(int total) {
 			this.total = total;
 		}
 

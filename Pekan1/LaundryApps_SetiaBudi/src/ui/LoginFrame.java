@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.user;
+import model.User;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -88,7 +88,7 @@ public class LoginFrame extends JFrame {
 		JButton btnLoggin = new JButton("Gass Login");
 		btnLoggin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (user.login(txtUsername.getText(),txtPassword.getText())) {
+				if (User.login(txtUsername.getText(),txtPassword.getText())) {
 					new MainFrame ().setVisible(true);
 					dispose();
 				}else {
