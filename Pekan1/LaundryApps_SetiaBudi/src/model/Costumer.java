@@ -29,6 +29,8 @@ public class Costumer {
 	public void setNomorHp(int nomorHp) {
 		this.nomorHp = nomorHp;
 	}
+
+	}
 	
 
 }

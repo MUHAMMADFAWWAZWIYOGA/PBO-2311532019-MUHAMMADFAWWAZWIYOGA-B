@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="src" path="Pekan1/LaundryApps_SetiaBudi/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="Pekan1/LaundryApps_SetiaBudi/src"/>
-	<classpathentry kind="lib" path="C:/Kuliah/2024 I 2025/Ganjil/Pratikum Programan Berbasis Object/mysql-connector-j-9.0.0.zip"/>
+	<classpathentry kind="lib" path="C:/Kuliah/2024 I 2025/Ganjil/Pratikum Programan Berbasis Object/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
 	<classpathentry kind="output" path="Pekan1/LaundryApps_SetiaBudi/bin"/>
 </classpath>

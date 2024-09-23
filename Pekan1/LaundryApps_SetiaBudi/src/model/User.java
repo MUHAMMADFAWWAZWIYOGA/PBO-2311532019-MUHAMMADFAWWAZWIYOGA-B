@@ -11,11 +11,11 @@ public class User {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getNama() {
+	public String getName() {
 		return nama;
 	}
 
-	public void setNama(String nama) {
+	public void setName(String nama) {
 		this.nama = nama;
 	}
 
@@ -39,7 +39,7 @@ public class User {
 		boolean isLoggin = false ;
 		User user = new User ();
 		user.setId ("1");
-		user.setNama ("fulan");
+		user.setName ("fulan");
 		user.setUsername(username);
 		user.setPassword ("12345");
 		
@@ -52,6 +52,9 @@ public class User {
 		}
 		return isLoggin ;
 	}
+
+
+	
 	
 		
 		

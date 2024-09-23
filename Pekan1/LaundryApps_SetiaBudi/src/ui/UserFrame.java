@@ -13,8 +13,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import DAO.UserRepo;
 import model.User;
 import table.TableUser;
@@ -22,6 +20,7 @@ import table.TableUser;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class UserFrame extends JFrame {
 
@@ -30,7 +29,12 @@ public class UserFrame extends JFrame {
 	private JTextField txtName;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
-	private JTable tableUsers;
+
+	
+	UserRepo usr = new UserRepo ();
+	List<User> ls ;
+	public String id;
+	private JTable table_User;
 
 	/**
 	 * Launch the application.
@@ -45,11 +49,14 @@ public class UserFrame extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				UserFrame frame = new UserFrame();
-				frame.setVisible(true);
-				frame.loadTable();
+				
 			}
 		});
+	}
+	public void loadTable () {
+		ls =usr.show();
+		TableUser tu = new TableUser(ls);
+		
 	}
 	public void reset ()
 	{
@@ -57,16 +64,9 @@ public class UserFrame extends JFrame {
 		txtUsername.setText("");
 		txtPassword.setText("");
 	}
-	public void loadTable () {
-		ls =usr.show();
-		TableUser tu = new TableUser (ls);
-		tableUsers.setModel((tu));
-		tableUsers.getTableHeader().setVisible(true);
-	}
 	
-	UserRepo usr = new UserRepo ();
-	List<User> ls ;
-	public String id;
+	
+
 	
 	
 
@@ -83,8 +83,8 @@ public class UserFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(UIManager.getColor("Button.light"));
 		panel.setBounds(0, 44, 666, 234);
+		panel.setBackground(UIManager.getColor("Button.light"));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -119,7 +119,7 @@ public class UserFrame extends JFrame {
 		btnSave.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				User user = new User();
-				user.setNama(txtName.getText());
+				user.setName(txtName.getText());
 				user.setUsername(txtUsername.getText());
 				user.setPassword(txtPassword.getText());
 				usr.save(user);
@@ -134,7 +134,7 @@ public class UserFrame extends JFrame {
 		btnUpdates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User user = new User ();
-				user.setNama(txtName.getText());
+				user.setName(txtName.getText());
 				user.setUsername(txtUsername.getText());
 				user.setPassword(txtPassword.getText());
 				user.setId(id);
@@ -166,23 +166,31 @@ public class UserFrame extends JFrame {
 		btnCancel.setBounds(416, 203, 85, 21);
 		panel.add(btnCancel);
 		
-		tableUsers = new JTable();
-		tableUsers.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				id = tableUsers.getValueAt (tableUsers.getSelectedRow(), 0 ).toString();
-				txtName.setText(tableUsers.getValueAt(tableUsers.getSelectedRow(), 1 ).toString());
-				txtUsername.setText(tableUsers.getValueAt(tableUsers.getSelectedRow(), 2 ).toString());
-				txtPassword.setText(tableUsers.getValueAt(tableUsers.getSelectedRow(), 3 ).toString());
-			}
-		});
-		tableUsers.setModel(new DefaultTableModel(
+		table_User = new JTable();
+		table_User.setSurrendersFocusOnKeystroke(true);
+		table_User.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"ID", "Name", "Username", "Password"},
 			},
 			new String[] {
+				"New column", "New column", "New column", "New column"
 			}
 		));
-		tableUsers.setBounds(10, 288, 666, 264);
-		contentPane.add(tableUsers);
+		table_User.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				id = table_User.getValueAt(table_User.getSelectedRow(), 0).toString();
+				txtName.setText(table_User.getValueAt(table_User.getSelectedRow(),1).toString());
+				txtUsername.setText(table_User.getValueAt(table_User.getSelectedRow(),2).toString());
+				txtPassword.setText(table_User.getValueAt(table_User.getSelectedRow(),3).toString());
+				
+			}
+		});
+		table_User.setBounds(0, 288, 666, 242);
+		contentPane.add(table_User);
+		
+		table_User = new JTable();
+		table_User.setBounds(0, 292, 666, 270);
+		contentPane.add(table_User);
 	}
 }

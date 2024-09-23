@@ -17,6 +17,8 @@ public class MainFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -56,6 +58,11 @@ public class MainFrame extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton btnPengguna = new JButton("PENGGUNA ");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new UserFrame ().setVisible(true);
+			}
+		});
 		btnPengguna.setBounds(57, 87, 134, 50);
 		contentPane.add(btnPengguna);
 		

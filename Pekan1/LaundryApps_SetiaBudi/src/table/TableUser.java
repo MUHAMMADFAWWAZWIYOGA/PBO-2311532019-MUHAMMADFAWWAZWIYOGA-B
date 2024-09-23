@@ -1,5 +1,6 @@
 package table;
 
+import java.awt.Window;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
@@ -23,13 +24,18 @@ public class TableUser extends AbstractTableModel {
 		return 0;
 	}
 	@Override
+	public String getColumnName (int column) {
+		return columnNames[column];
+	}
+	
+	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		switch (columnIndex) {
 		case 0 :
 		return ls.get(rowIndex).getId();
 		case 1 : 
-		return ls.get(rowIndex).getNama();
+		return ls.get(rowIndex).getName();
 		case 2 :
 			return ls.get(rowIndex).getUsername();
 		case 3 :
@@ -37,8 +43,21 @@ public class TableUser extends AbstractTableModel {
 		default :
 		return null;
 	}
+	}
+	public static void setModel(TableUser tableUser) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static Window getTableHeader() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}
 	
 	
 
 
-}}
+
+	
