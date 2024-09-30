@@ -2,14 +2,14 @@ package model;
 
 public class Costumer {
 	
-	String atribute,nama,alamat;
+	String Id,nama,alamat;
 	int nomorHp;
 	
-	public String getAtribute() {
-		return atribute;
+	public String getId() {
+		return Id;
 	}
-	public void setAtribute(String atribute) {
-		this.atribute = atribute;
+	public void setId(String Id) {
+		this.Id = Id;
 	}
 	public String getNama() {
 		return nama;
@@ -30,7 +30,10 @@ public class Costumer {
 		this.nomorHp = nomorHp;
 	}
 
+	
+
+
 	}
 	
 
-}
+
