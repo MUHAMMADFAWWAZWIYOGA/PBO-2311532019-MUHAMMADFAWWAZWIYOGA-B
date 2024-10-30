@@ -1,4 +1,6 @@
-/ui/
-/table/
 /DAO/
+/config/
 /model/
+/patch.class
+/table/
+/ui/
