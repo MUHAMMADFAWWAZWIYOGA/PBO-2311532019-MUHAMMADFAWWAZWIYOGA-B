@@ -11,7 +11,7 @@ public interface OrderDetailDAO {
 		 void save (OrderDetail );
 		public  List <OrderDetail> show();
 		public void delete (String id);
-		public void update(Order order);
-		void Costumer(Order order);
+		public void update(OrderDetail orderdetail);
+		void Costumer(OrderDetail ordedetailr);
 		
 	}

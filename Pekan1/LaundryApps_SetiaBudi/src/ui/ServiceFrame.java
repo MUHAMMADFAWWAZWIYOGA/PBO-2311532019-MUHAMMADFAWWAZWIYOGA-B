@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -15,6 +16,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class ServiceFrame extends JFrame {
 
@@ -64,7 +68,7 @@ public class ServiceFrame extends JFrame {
 		
 		textFieldSatuan = new JTextField();
 		textFieldSatuan.setColumns(10);
-		textFieldSatuan.setBounds(60, 129, 96, 19);
+		textFieldSatuan.setBounds(60, 123, 96, 19);
 		contentPane.add(textFieldSatuan);
 		
 		textFieldHarga = new JTextField();
@@ -77,7 +81,7 @@ public class ServiceFrame extends JFrame {
 		contentPane.add(lblJenis);
 		
 		JLabel lblSatuan = new JLabel("Satuan");
-		lblSatuan.setBounds(60, 106, 45, 13);
+		lblSatuan.setBounds(60, 100, 45, 13);
 		contentPane.add(lblSatuan);
 		
 		JLabel lblHarga = new JLabel("Harga");
@@ -95,25 +99,53 @@ public class ServiceFrame extends JFrame {
 			}
 		});
 	}
+	private void loadDataToTable() {
+	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/laundry_apps", "root", "")) {
+	        String query = "SELECT * FROM service";
+	        Statement stmt = conn.createStatement();
+	        ResultSet rs = stmt.executeQuery(query);
 
+	        // Buat model tabel dengan kolom yang sesuai
+	        DefaultTableModel model = new DefaultTableModel(new String[]{"Jenis", "Satuan", "Harga"}, 0);
+	        while (rs.next()) {
+	            String jenis = rs.getString("jenis");
+	            String satuan = rs.getString("satuan");
+	            String harga = rs.getString("harga");
+	            model.addRow(new Object[]{jenis, satuan, harga});
+	        }
+	        table.setModel(model);
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	}
 	// Method to save data to database
 	private void saveToDatabase() {
-		String jenis = textFieldJenis.getText();
-		String satuan = textFieldSatuan.getText();
-		int harga = Integer.parseInt(textFieldHarga.getText());
+	    String jenis = textFieldJenis.getText();
+	    String satuan = textFieldSatuan.getText();
+	    String harga = textFieldHarga.getText();
 
-		// Database connection and SQL insert
-		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/your_database", "username", "password")) {
-			String sql = "INSERT INTO `Order` (jenis, satuan, harga) VALUES (?, ?, ?)";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, jenis);
-			pstmt.setString(2, satuan);
-			pstmt.setInt(3, harga);
-			
-			pstmt.executeUpdate();
-			System.out.println("Data berhasil disimpan");
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
+	    try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/laundry_apps", "root", "")) {
+	        String sql = "INSERT INTO `service` (jenis, satuan, harga) VALUES (?, ?, ?)";
+	        PreparedStatement pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, jenis);
+	        pstmt.setString(2, satuan);
+	        pstmt.setString(3, harga);
+
+	        pstmt.executeUpdate();
+	        System.out.println("Data berhasil disimpan");
+
+	        // Muat data baru ke JTable setelah penyimpanan
+	        loadDataToTable();
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
 	}
+	
+	public DefaultTableModel getServiceTableModel() {
+	    return (DefaultTableModel) table.getModel();
+	}
+
+
 }

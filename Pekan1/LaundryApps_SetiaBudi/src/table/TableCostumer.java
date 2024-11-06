@@ -1,6 +1,7 @@
 package table;
 
 import java.awt.Window;
+
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;

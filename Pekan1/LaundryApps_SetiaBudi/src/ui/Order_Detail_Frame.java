@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,6 +12,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 
 public class Order_Detail_Frame extends JFrame {
 
@@ -18,6 +21,7 @@ public class Order_Detail_Frame extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+    private ServiceFrame serviceFrame;  // Instance of ServiceFrame
 	private JTable table_1;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -180,5 +184,9 @@ public class Order_Detail_Frame extends JFrame {
 		JComboBox comboBox_2_1 = new JComboBox();
 		comboBox_2_1.setBounds(10, 274, 191, 22);
 		contentPane.add(comboBox_2_1);
+		
+		serviceFrame = new ServiceFrame();  // Create instance of ServiceFrame
+        DefaultTableModel serviceTableModel = serviceFrame.getServiceTableModel();  // Get the model from ServiceFrame
+        table.setModel(serviceTableModel);  // Set the model to this frame's table
 	}
 }
